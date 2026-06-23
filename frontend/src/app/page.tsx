@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Post } from '@/lib/types'
 import api from '@/lib/api'
 import PostCard from '@/components/PostCard'
 import { Search, TrendingUp, Tag } from 'lucide-react'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export default function HomePage() {
+function HomeContent() {
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -43,7 +43,6 @@ export default function HomePage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      {/* Hero */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-3">
           Stories for{' '}
@@ -115,5 +114,13 @@ export default function HomePage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div className="max-w-6xl mx-auto px-4 py-10 text-center text-gray-400">Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   )
 }
