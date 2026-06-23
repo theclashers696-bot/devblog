@@ -1,0 +1,14 @@
+node_modules/
+.next/
+frontend/.next/
+frontend/node_modules/
+backend/server
+backend/*.exe
+*.env
+.env.local
+.env.production
+__pycache__/
+*.pyc
+.DS_Store
+dist/
+build/

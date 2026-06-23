@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "jYAHnEBfpgbGb8IUyTMnq"
+uri = "file://devblog-src.tar.gz"
+type = "unspecified"
+title = "DevBlog Source Code"

@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: devblog-backend
+    env: go
+    rootDir: backend
+    buildCommand: go build -o server .
+    startCommand: ./server
+    healthCheckPath: /api/posts
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: devblog-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GIN_MODE
+        value: release
+      - key: PORT
+        value: 8080
+
+  - type: web
+    name: devblog-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: devblog-db
+    databaseName: devblog
+    user: devblog

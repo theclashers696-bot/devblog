@@ -1,0 +1,3 @@
+./auth.go
+./comments.go
+./posts.go
